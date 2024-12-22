@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fetch Text File</title>
+</head>
+<body>
+  <h1>File Content:</h1>
+  <div id="content">Loading...</div>
+
+  <script>
+    // Fetch the text file
+    fetch('./data.txt')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch the file');
+        }
+        return response.text();
+      })
+      .then(data => {
+        // Display the content
+        document.getElementById('content').textContent = data;
+      })
+      .catch(error => {
+        // Handle errors
+        document.getElementById('content').textContent = 'Error loading file: ' + error.message;
+      });
+  </script>
+</body>
+</html>
